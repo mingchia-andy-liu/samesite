@@ -1,4 +1,5 @@
 const express = require('express');
+const ViteExpress = require("vite-express");
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
@@ -53,6 +54,7 @@ app.post('/login', (req, res) => {
       // Set a cookie with the username and specified SameSite attribute
       res.cookie('username', username, { 
           sameSite: samesite,
+
           httpOnly: true // Prevents client-side JavaScript from accessing the cookie
       });
       res.redirect('/');
@@ -88,6 +90,6 @@ app.get('/cookie-svg', (req, res) => {
 
 
 // Start the server
-app.listen(port, () => {
+ViteExpress.listen(app, port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
